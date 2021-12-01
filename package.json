@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "prepare": "husky install",
+    "lint": "eslint './src/**/*.ts' --max-warnings 0 --fix",
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview"
