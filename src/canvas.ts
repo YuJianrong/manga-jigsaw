@@ -164,7 +164,8 @@ export function processImage(pieceWidth: number, pieceHeight: number) {
         ',' +
         Math.floor(canvas.height / pieceHeight),
     );
-    for (let px = Math.floor(canvas.width / pieceWidth) - 1; px >= 0; px--) {
+    const pxStart = Math.floor(canvas.width / pieceWidth) - (canvas.width % pieceWidth ? 0 : 1);
+    for (let px = pxStart; px >= 0; px--) {
       let bottomImageData = ctxTemp.getImageData(
         px * pieceWidth,
         Math.floor(canvas.height / pieceHeight) * pieceHeight,
@@ -175,7 +176,7 @@ export function processImage(pieceWidth: number, pieceHeight: number) {
         let rightImageData = ctxTemp.getImageData(
           Math.floor(canvas.width / pieceWidth) * pieceWidth,
           py * pieceHeight,
-          canvas.width % pieceWidth,
+          canvas.width % pieceWidth || 1,
           pieceHeight,
         );
         let rightWidth = canvas.width % pieceWidth;
