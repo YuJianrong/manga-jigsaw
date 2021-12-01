@@ -1,3 +1,7 @@
+export const piece = {
+  height: 0,
+  width: 0,
+};
 export enum PieceType {
   PIECE_LEFT = 1,
   PIECE_TOP = 2,

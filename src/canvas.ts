@@ -1,4 +1,4 @@
-import { getElement, PieceType, wait } from './helper';
+import { formatDate, getElement, piece, PieceType, wait } from './helper';
 import { getDiffRatio, imgFindX, imgFindY, imgToGray } from './imgHelper';
 
 const canvasTemp = document.createElement('canvas');
@@ -308,6 +308,52 @@ export function processImage(pieceWidth: number, pieceHeight: number) {
 
     console.info(maxDiffRatios);
   }, 0);
+}
+
+const resultCanvas = getElement<HTMLCanvasElement>('imgResult');
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const resultCtx = resultCanvas.getContext('2d')!;
+export function save() {
+  // 判断是否已有图片
+  if (resultCanvas.width <= 0 || resultCanvas.height <= 0) {
+    alert('请先执行后再保存图片');
+    return;
+  }
+
+  // 去除中间空白
+  const canvasSave = document.createElement('canvas');
+  // var canvasSave = getElement<HTMLCanvasElement>('imgSave');
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const ctxSave = canvasSave.getContext('2d')!;
+
+  canvasSave.width = canvasTemp.width;
+  canvasSave.height = canvasTemp.height;
+
+  for (let px = 0; px < Math.ceil(canvasSave.width / piece.width); px++) {
+    for (let py = 0; py < Math.ceil(canvasSave.height / piece.height); py++) {
+      const newPieceImageData = resultCtx.getImageData(
+        px * piece.width + px,
+        py * piece.height + py,
+        piece.width,
+        piece.height,
+      );
+      ctxSave.putImageData(newPieceImageData, px * piece.width, py * piece.height);
+    }
+  }
+
+  // 保存图片
+  const MIME_TYPE = 'image/jpeg';
+
+  const imgURL = canvasSave.toDataURL(MIME_TYPE);
+
+  const dlLink = document.createElement('a');
+  dlLink.download = formatDate(new Date()) + '.jpg';
+  dlLink.href = imgURL;
+  dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+  document.body.appendChild(dlLink);
+  dlLink.click();
+  document.body.removeChild(dlLink);
 }
 
 // function reSetCanvasSize() {
