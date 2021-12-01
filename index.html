@@ -7,7 +7,25 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div>
+      <input id="imageSelect" type="file" accept="image/*" />
+      块宽：<input id="pieceWidth" class="number" type="number" min="0" max="999" value="0" />
+      块高：<input id="pieceHeight" class="number" type="number" min="0" max="999" value="0" />
+      <input id="imageProcess" type="button" value="执行" />
+      <input id="imageSave" type="button" value="保存图片" />
+    </div>
+
+    <div class="left leftCanvas">
+      <canvas id="imgCanvas" width="0" height="0"></canvas>
+    </div>
+    <div class="left">
+      <canvas id="imgResult" width="0" height="0"></canvas>
+    </div>
+    <div class="left">
+      <canvas id="imgSave" width="0" height="0"></canvas>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
+<!DOCTYPE html>
+<html></html>

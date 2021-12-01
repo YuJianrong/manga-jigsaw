@@ -1,8 +1,49 @@
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html,
+body {
+  overflow-x: auto;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+body,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+.left {
+  float: left;
+  left: 0px;
+  margin: 2px;
+}
+
+.leftCanvas {
+  background-color: aquamarine;
+  overflow: auto;
+  width: 500px;
+  display: none;
+  height: calc(100% - 30px);
+}
+
+input.number {
+  display: inline-block;
+  width: 72px;
+  height: 20px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  line-height: 20px;
+  cursor: pointer;
 }

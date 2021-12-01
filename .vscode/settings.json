@@ -17,7 +17,7 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[html]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "typescript.implementationsCodeLens.enabled": true,
   "eslint.format.enable": true,
